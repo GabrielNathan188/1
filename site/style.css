@@ -1,0 +1,218 @@
+/* RESET básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CORPO */
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: #0f172a;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: rgb(29, 28, 28);
+    position: absolute;
+    width: 100%;
+    top: 0;
+    padding: 20px;
+    z-index: 10;
+}
+
+.navbar nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* HERO (FUNDO) */
+.Banner {
+    height: 100vh;
+    background-image: url("assets/Imgs/Background.png");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* OVERLAY ESCURO */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* CONTEÚDO CENTRAL */
+.conteudo {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+    z-index: 1;
+}
+
+.conteudo h1 {
+    font-size: 60px;
+}
+
+.conteudo p {
+    margin: 20px 0;
+    letter-spacing: 5px;
+}
+
+/* BARRA DE BUSCA */
+.conteudo input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 20px;
+    border: none;
+}
+
+.produtos {
+    padding: 50px;
+    background-color: #0f172a;
+    text-align: center;
+}
+
+.produtos h2 {
+    margin-bottom: 30px;
+}
+
+.lista-produtos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.produto {
+    background-color: #1e293b;
+    padding: 15px;
+    border-radius: 15px;
+    width: 200px;
+    transition: 0.3s
+}
+
+.produto:hover {
+    transform: scale(1.05);
+}
+
+.produto img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+button {
+    width: 50%;
+    padding: 8px;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.menu-adicionar {
+    position: relative;
+}
+
+#btn-abrir-form {
+    background: #22c55e;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.form-produto {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+}
+
+.form-produto.ativo {
+    display: flex;
+}
+
+.form-produto input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+.titulo {
+    background-image: url(assets/Imgs/Background.png);
+}
+
+.overlay-carrinho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.overlay-carrinho.ativo {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.painel-carrinho {
+    position: fixed;
+    top: 0;
+    right: -300px; /* escondido*/
+    width: 300px;
+    height: 100%;
+    background-color: #1e293b;
+    padding: 20px;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.painel-carrinho.ativo {
+    right: 0;
+}
+
+.painel-carrinho h2 {
+    margin-bottom: 20px;
+}
+
+#lista-carrinho li {
+    background: #334155;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+#lista-carrinho button {
+    width: auto;
+    margin: 5px;
+    padding: 5px 10px;
+}
