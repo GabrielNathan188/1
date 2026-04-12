@@ -130,6 +130,32 @@ button {
 }
 
 .menu-adicionar {
+    width: 75px;
+    padding: 0px;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1px;
+    transition: 0.3s;
+}
+
+.comprar {
+    width: 50%;
+    padding: 8px;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.menu-adicionar {
     position: relative;
 }
 
@@ -215,4 +241,10 @@ button {
     width: auto;
     margin: 5px;
     padding: 5px 10px;
+}
+.controle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
 }

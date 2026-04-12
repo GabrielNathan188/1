@@ -1,15 +1,12 @@
 let carrinho = /*JSON.parse(sessionStorage.getItem("carrinho")) || */[];
 
-let botoes = document.querySelectorAll(".comprar");
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("comprar")) {
+        let nome = e.target.getAttribute("data-nome");
+        let preco = parseFloat(e.target.getAttribute("data-preco"));
 
-botoes.forEach(function(botao) {
-    botao.addEventListener("click", function() {
-
-        let nome = botao.getAttribute("data-nome");
-        let preco = parseFloat(botao.getAttribute("data-preco"));
-
-        adicionarCarrinho(nome, preco);
-    });
+        confirmarCompra(nome, preco);
+    }
 });
 
 function adicionarCarrinho(nome, preco) {
@@ -45,14 +42,14 @@ function atualizarCarrinho() {
         let li = document.createElement("li");
 
         li.innerHTML = `
-            ${item.nome} 
-            <br>
-            R$ ${item.preco * item.quantidade}
-            <br>
+            <strong>${item.nome}</strong><br>
+            <span>R$ ${(item.preco * item.quantidade).toFixed(2)}</span><br>
 
-            <button onclick="diminuirQuantidade('${item.nome}')">➖</button>
-            ${item.quantidade}
-            <button onclick="aumentarQuantidade('${item.nome}')">➕</button>
+            <div class="controle">
+                <button onclick="diminuirQuantidade('${item.nome}')">➖</button>
+                <span>${item.quantidade}</span>
+                <button onclick="aumentarQuantidade('${item.nome}')">➕</button>
+            </div>
         `;
 
         lista.appendChild(li);
@@ -80,7 +77,7 @@ function atualizarContador() {
             totalItems += item.quantidade;
         });
 
-        contador.textContent = `carrinho (${totalItems})`
+        contador.textContent = `Carrinho (${totalItems})`
     }
 }
 
@@ -97,7 +94,8 @@ btnCarrinho.addEventListener("click", function() {
     overlay.classList.add("ativo");
 });
 
-overlay.addEventListener("click", function() {
+overlay.addEventListener("click", function(e) {
+    e.preventDefault();
     painel.classList.remove("ativo");
     overlay.classList.remove("ativo")
 });
@@ -136,3 +134,63 @@ function diminuirQuantidade(nome) {
     atualizarCarrinho();
     atualizarContador();
 }
+
+function criarProduto(nome, preco, imagem) {
+    let div = document.createElement("div")
+    div.classList.add("produto");
+
+    div.innerHTML = `
+    <img src="${imagem}">
+    <h3>${nome}</h3>
+    <p>R$ ${parseFloat(preco).toFixed(2)}</p>
+    <button class="comprar" data-nome="${nome}" data-preco="${preco}">
+        Comprar
+    </button>
+    `;
+
+    listaProdutos.appendChild(div);
+    
+    //ativar botão novo
+    let botao = div.querySelector(".comprar");
+    
+    botao.addEventListener("click", function() {
+        confirmarCompra(nome, preco);
+    });
+}
+
+function confirmarCompra(nome, preco) {
+    let confirmar = confirm(`deseja adicionar "${nome}" ao carrinho?`);
+    
+    if (confirmar) {
+        adicionarCarrinho(nome, parseFloat(preco));
+
+        alert(`${nome} foi adicionado ao carrinho!`);
+    }
+}
+
+let btnAdicionar =  document.getElementById("btn-adicionar");
+let listaProdutos = document.querySelector(".lista-produtos");
+
+btnAdicionar.addEventListener("click", function() {
+    let nome = document.getElementById("nome-produto").value;
+    let preco = document.getElementById("preco-produto").value;
+    let imagem = document.getElementById("imagem-produto").value;
+
+    // validação simples
+    if (!nome || !preco || !imagem) {
+        alert("Preencha todos os campos!")
+        return;
+    }
+    criarProduto(nome, preco, imagem);
+
+    //limpa campos
+    document.getElementById("nome-produto").value = "";
+    document.getElementById("preco-produto").value = "";
+    document.getElementById("imagem-produto").value = "";
+
+    document.addEventListener("click", function(e) {
+        if (!form.contains(e.target) && !btnAbrirForm.contains(e.target)) {
+            form.classList.remove("ativo");
+        }
+    });
+})
