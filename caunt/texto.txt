@@ -1,6 +1,8 @@
 É possível adotar diferentes abordagens e fazer o aniversário de alguém ainda mais
 marcante.
 
+npm init -y
+
 Mensagems de aniversário:
 
 Feliz aniversário! Que a vida lhe presenteie com muito amor, saúde e
