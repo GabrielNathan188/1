@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "node --wacth --no-warnigs server.js"
+    "dev": "node --watch server.js"
   },
   "keywords": [],
   "author": "",

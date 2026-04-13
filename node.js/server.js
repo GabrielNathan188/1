@@ -8,12 +8,12 @@
 
 // server.listen(3333)
 
-import {fastify} from "fastify";
+import { fastify } from 'fastify';
 
 const server = fastify()
 
 server.get('/', () => {
-    return 'Hello world'
+    return 'Mudou!!'
 })
 
 server.get('/node', () => {
